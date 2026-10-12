@@ -1,0 +1,1382 @@
+[
+  {
+    "flow_index": 434,
+    "risk_score": 42.5,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5926,
+      "evidence": 0.849,
+      "features": [
+        {
+          "feature": "total_packets",
+          "share": 0.189,
+          "value": 131.0,
+          "typical": 16.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        },
+        {
+          "feature": "idle_mean_s",
+          "share": 0.183,
+          "value": 44.94796371459961,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 2.51,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 443,
+      "service": "port 443 (HTTPS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. Behaviors driving the unusualness: total packets in the flow: 131 vs typical 16, somewhat higher; average idle period (seconds): 45 vs typical 0, somewhat higher. The destination is a common service, port 443 (HTTPS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 16264,
+    "risk_score": 49.3,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.6444,
+      "evidence": 0.963,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 3.31,
+      "evidence": 0.045,
+      "features": [
+        {
+          "feature": "fwd_bwd_byte_ratio",
+          "z": 4.85,
+          "value": 75.0,
+          "typical": 0.3409236669540405,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 443,
+      "service": "port 443 (HTTPS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior and shows a small deviation from the port 443 (HTTPS) baseline. No single behavior stands out; the unusualness comes from a combination of features. Largest deviations from the service baseline: outbound-to-inbound byte ratio (data asymmetry): 75 vs typical 0.34, somewhat higher. The destination is a common service, port 443 (HTTPS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 18497,
+    "risk_score": 38.0,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5786,
+      "evidence": 0.76,
+      "features": [
+        {
+          "feature": "total_packets",
+          "share": 0.139,
+          "value": 135.0,
+          "typical": 7.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 2.14,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 80,
+      "service": "port 80 (HTTP)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. Behaviors driving the unusualness: total packets in the flow: 135 vs typical 7, somewhat higher. The destination is a common service, port 80 (HTTP). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 21500,
+    "risk_score": 60.3,
+    "risk_level": "High",
+    "anomaly": {
+      "score": 0.5414,
+      "evidence": 0.412,
+      "features": [
+        {
+          "feature": "iat_std_ms",
+          "share": 0.282,
+          "value": 45024.23046875,
+          "typical": 0.0944792628288269,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "idle_mean_s",
+          "share": 0.228,
+          "value": 78.01148986816406,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "iat_mean_ms",
+          "share": 0.217,
+          "value": 26021.98828125,
+          "typical": 8.15000057220459,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 12.84,
+      "evidence": 1.0,
+      "features": [
+        {
+          "feature": "idle_mean_s",
+          "z": 13.73,
+          "value": 78.01148986816406,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "iat_max_s",
+          "z": 12.46,
+          "value": 78.01148986816406,
+          "typical": 0.02387700043618679,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "flow_duration_s",
+          "z": 12.32,
+          "value": 78.06596374511719,
+          "typical": 0.023940999060869217,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 53,
+      "service": "port 53 (DNS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "High risk because the network flow is moderately unusual compared with the learned benign behavior and shows a large deviation from the port 53 (DNS) baseline. Behaviors driving the unusualness: variability of packet timing (ms): 45,024 vs typical 0.094, much higher; average idle period (seconds): 78 vs typical 0, far higher; average gap between packets (ms): 26,022 vs typical 8.2, somewhat higher. Largest deviations from the service baseline: average idle period (seconds): 78 vs typical 0, far higher; longest pause between packets (seconds): 78 vs typical 0.024, far higher; connection duration (seconds): 78 vs typical 0.024, far higher. The destination is a common service, port 53 (DNS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate immediately",
+      "text": "Investigate immediately and consider containment according to your organization's security policy. This system takes no automated action; any containment decision is made by a person."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 36865,
+    "risk_score": 44.8,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5806,
+      "evidence": 0.778,
+      "features": [
+        {
+          "feature": "packets_per_sec",
+          "share": 0.272,
+          "value": 2000000.0,
+          "typical": 40816.33984375,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 2.28,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 59743,
+      "service": "port 59743",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. Behaviors driving the unusualness: packet rate: 2,000,000 vs typical 40,816, somewhat higher. The destination, port 59743, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 40120,
+    "risk_score": 49.1,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5909,
+      "evidence": 0.844,
+      "features": [
+        {
+          "feature": "active_mean_s",
+          "share": 0.403,
+          "value": 13.827659606933594,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 4.67,
+      "evidence": 0.239,
+      "features": [
+        {
+          "feature": "active_mean_s",
+          "z": 10.79,
+          "value": 13.827659606933594,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 443,
+      "service": "port 443 (HTTPS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior and shows a small deviation from the port 443 (HTTPS) baseline. Behaviors driving the unusualness: average active period (seconds): 14 vs typical 0, far higher. Largest deviations from the service baseline: average active period (seconds): 14 vs typical 0, far higher. The destination is a common service, port 443 (HTTPS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 40701,
+    "risk_score": 64.1,
+    "risk_level": "High",
+    "anomaly": {
+      "score": 0.5555,
+      "evidence": 0.565,
+      "features": [
+        {
+          "feature": "iat_std_ms",
+          "share": 0.305,
+          "value": 53185.10546875,
+          "typical": 0.0944792628288269,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "iat_mean_ms",
+          "share": 0.213,
+          "value": 30742.0390625,
+          "typical": 8.15000057220459,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        },
+        {
+          "feature": "idle_mean_s",
+          "share": 0.198,
+          "value": 92.15491485595703,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 13.32,
+      "evidence": 1.0,
+      "features": [
+        {
+          "feature": "idle_mean_s",
+          "z": 14.24,
+          "value": 92.15491485595703,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "iat_max_s",
+          "z": 12.93,
+          "value": 92.1549072265625,
+          "typical": 0.02387700043618679,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "flow_duration_s",
+          "z": 12.79,
+          "value": 92.22611999511719,
+          "typical": 0.023940999060869217,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 53,
+      "service": "port 53 (DNS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "High risk because the network flow is moderately unusual compared with the learned benign behavior and shows a large deviation from the port 53 (DNS) baseline. Behaviors driving the unusualness: variability of packet timing (ms): 53,185 vs typical 0.094, much higher; average gap between packets (ms): 30,742 vs typical 8.2, somewhat higher; average idle period (seconds): 92 vs typical 0, far higher. Largest deviations from the service baseline: average idle period (seconds): 92 vs typical 0, far higher; longest pause between packets (seconds): 92 vs typical 0.024, far higher; connection duration (seconds): 92 vs typical 0.024, far higher. The destination is a common service, port 53 (DNS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate immediately",
+      "text": "Investigate immediately and consider containment according to your organization's security policy. This system takes no automated action; any containment decision is made by a person."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 45698,
+    "risk_score": 57.5,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.3417,
+      "evidence": 0.0,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 10.07,
+      "evidence": 1.0,
+      "features": [
+        {
+          "feature": "iat_std_ms",
+          "z": 15.84,
+          "value": 51.43618392944336,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "iat_mean_ms",
+          "z": 10.41,
+          "value": 25.7497501373291,
+          "typical": 0.04800000041723251,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "packets_per_sec",
+          "z": -3.95,
+          "value": 48.544158935546875,
+          "typical": 40816.33984375,
+          "direction": "lower",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 49198,
+      "service": "port 49198",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow shows a large deviation from the port 49198 baseline. Only the service baseline contributed, so treat the evidence as weaker. Largest deviations from the service baseline: variability of packet timing (ms): 51 vs typical 0, far higher; average gap between packets (ms): 26 vs typical 0.048, far higher; packet rate: 49 vs typical 40,816, somewhat lower. The destination, port 49198, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 48437,
+    "risk_score": 34.2,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.557,
+      "evidence": 0.595,
+      "features": [
+        {
+          "feature": "packets_per_sec",
+          "share": 0.312,
+          "value": 2000000.0,
+          "typical": 40816.33984375,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 2.37,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 49745,
+      "service": "port 49745",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is moderately unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. Behaviors driving the unusualness: packet rate: 2,000,000 vs typical 40,816, somewhat higher. The destination, port 49745, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 49371,
+    "risk_score": 50.0,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5174,
+      "evidence": 0.0,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 13.72,
+      "evidence": 1.0,
+      "features": [
+        {
+          "feature": "init_win_bwd",
+          "z": 17.17,
+          "value": 260.0,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "total_packets",
+          "z": 13.42,
+          "value": 85.0,
+          "typical": 2.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "iat_std_ms",
+          "z": 10.57,
+          "value": 84.45872497558594,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 8080,
+      "service": "port 8080 (HTTP alt)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow shows a large deviation from the port 8080 (HTTP alt) baseline. Only the service baseline contributed, so treat the evidence as weaker. Largest deviations from the service baseline: initial TCP window size, inbound: 260 vs typical 0, far higher; total packets in the flow: 85 vs typical 2, far higher; variability of packet timing (ms): 84 vs typical 0, far higher. The destination is a common service, port 8080 (HTTP alt). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 57869,
+    "risk_score": 40.1,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5839,
+      "evidence": 0.802,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 2.11,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 443,
+      "service": "port 443 (HTTPS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. No single behavior stands out; the unusualness comes from a combination of features. The destination is a common service, port 443 (HTTPS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 61769,
+    "risk_score": 37.7,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.4254,
+      "evidence": 0.0,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 7.59,
+      "evidence": 0.656,
+      "features": [
+        {
+          "feature": "init_win_bwd",
+          "z": 17.92,
+          "value": 332.0,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "init_win_fwd",
+          "z": -3.18,
+          "value": 0.0,
+          "typical": 994.9998168945312,
+          "direction": "lower",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 47416,
+      "service": "port 47416",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow shows a moderate deviation from the port 47416 baseline. Only the service baseline contributed, so treat the evidence as weaker. Largest deviations from the service baseline: initial TCP window size, inbound: 332 vs typical 0, far higher; initial TCP window size, outbound: 0 vs typical 995, somewhat lower. The destination, port 47416, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 63085,
+    "risk_score": 56.0,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5764,
+      "evidence": 0.75,
+      "features": [
+        {
+          "feature": "fwd_bwd_byte_ratio",
+          "share": 0.347,
+          "value": 2809.0,
+          "typical": 0.4285714626312256,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "fwd_bwd_pkt_ratio",
+          "share": 0.218,
+          "value": 14.0,
+          "typical": 1.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        },
+        {
+          "feature": "bytes_per_sec",
+          "share": 0.213,
+          "value": 147789472.0,
+          "typical": 142857.078125,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 5.5,
+      "evidence": 0.358,
+      "features": [
+        {
+          "feature": "fwd_bwd_byte_ratio",
+          "z": 9.48,
+          "value": 2809.0,
+          "typical": 0.4285714626312256,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "fwd_bwd_pkt_ratio",
+          "z": 4.77,
+          "value": 14.0,
+          "typical": 1.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 138,
+      "service": "port 138",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow is moderately unusual compared with the learned benign behavior and shows a moderate deviation from the port 138 baseline. Behaviors driving the unusualness: outbound-to-inbound byte ratio (data asymmetry): 2,809 vs typical 0.43, much higher; outbound-to-inbound packet ratio (traffic asymmetry): 14 vs typical 1, somewhat higher; data rate: 147,789,472 vs typical 142,857, somewhat higher. Largest deviations from the service baseline: outbound-to-inbound byte ratio (data asymmetry): 2,809 vs typical 0.43, much higher; outbound-to-inbound packet ratio (traffic asymmetry): 14 vs typical 1, somewhat higher. The destination, port 138, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 66544,
+    "risk_score": 49.3,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.6444,
+      "evidence": 0.963,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 3.31,
+      "evidence": 0.045,
+      "features": [
+        {
+          "feature": "fwd_bwd_byte_ratio",
+          "z": 4.85,
+          "value": 75.0,
+          "typical": 0.3409236669540405,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 443,
+      "service": "port 443 (HTTPS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior and shows a small deviation from the port 443 (HTTPS) baseline. No single behavior stands out; the unusualness comes from a combination of features. Largest deviations from the service baseline: outbound-to-inbound byte ratio (data asymmetry): 75 vs typical 0.34, somewhat higher. The destination is a common service, port 443 (HTTPS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 79152,
+    "risk_score": 49.3,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.6444,
+      "evidence": 0.963,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 3.31,
+      "evidence": 0.045,
+      "features": [
+        {
+          "feature": "fwd_bwd_byte_ratio",
+          "z": 4.85,
+          "value": 75.0,
+          "typical": 0.3409236669540405,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 443,
+      "service": "port 443 (HTTPS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior and shows a small deviation from the port 443 (HTTPS) baseline. No single behavior stands out; the unusualness comes from a combination of features. Largest deviations from the service baseline: outbound-to-inbound byte ratio (data asymmetry): 75 vs typical 0.34, somewhat higher. The destination is a common service, port 443 (HTTPS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 84215,
+    "risk_score": 33.8,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5569,
+      "evidence": 0.588,
+      "features": [
+        {
+          "feature": "packets_per_sec",
+          "share": 0.308,
+          "value": 2000000.0,
+          "typical": 40816.33984375,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 2.27,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 54613,
+      "service": "port 54613",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is moderately unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. Behaviors driving the unusualness: packet rate: 2,000,000 vs typical 40,816, somewhat higher. The destination, port 54613, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 87748,
+    "risk_score": 60.5,
+    "risk_level": "High",
+    "anomaly": {
+      "score": 0.5417,
+      "evidence": 0.416,
+      "features": [
+        {
+          "feature": "active_mean_s",
+          "share": 0.399,
+          "value": 3.7514278888702393,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "fwd_bwd_pkt_ratio",
+          "share": 0.241,
+          "value": 77.0,
+          "typical": 1.0,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "flow_duration_s",
+          "share": 0.173,
+          "value": 118.69985961914062,
+          "typical": 9.600000339560211e-05,
+          "direction": "higher",
+          "magnitude": "much"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 8.62,
+      "evidence": 0.803,
+      "features": [
+        {
+          "feature": "idle_mean_s",
+          "z": 9.17,
+          "value": 10.124015808105469,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "fwd_bwd_pkt_ratio",
+          "z": 8.68,
+          "value": 77.0,
+          "typical": 1.0,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "flow_duration_s",
+          "z": 8.02,
+          "value": 118.69985961914062,
+          "typical": 9.600000339560211e-05,
+          "direction": "higher",
+          "magnitude": "much"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 0,
+      "service": "port 0",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "High risk because the network flow is moderately unusual compared with the learned benign behavior and shows a large deviation from the port 0 baseline. Behaviors driving the unusualness: average active period (seconds): 3.8 vs typical 0, much higher; outbound-to-inbound packet ratio (traffic asymmetry): 77 vs typical 1, much higher; connection duration (seconds): 119 vs typical 9.6e-05, much higher. Largest deviations from the service baseline: average idle period (seconds): 10 vs typical 0, much higher; outbound-to-inbound packet ratio (traffic asymmetry): 77 vs typical 1, much higher; connection duration (seconds): 119 vs typical 9.6e-05, much higher. The destination, port 0, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate immediately",
+      "text": "Investigate immediately and consider containment according to your organization's security policy. This system takes no automated action; any containment decision is made by a person."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 93276,
+    "risk_score": 56.9,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.606,
+      "evidence": 0.892,
+      "features": [
+        {
+          "feature": "fwd_bwd_byte_ratio",
+          "share": 0.229,
+          "value": 618.0,
+          "typical": 1.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 4.23,
+      "evidence": 0.176,
+      "features": [
+        {
+          "feature": "packet_size_std",
+          "z": 4.65,
+          "value": 356.2251281738281,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        },
+        {
+          "feature": "fwd_bwd_byte_ratio",
+          "z": 4.56,
+          "value": 618.0,
+          "typical": 1.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        },
+        {
+          "feature": "avg_packet_size",
+          "z": 3.48,
+          "value": 617.0,
+          "typical": 9.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 50947,
+      "service": "port 50947",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior and shows a small deviation from the port 50947 baseline. Behaviors driving the unusualness: outbound-to-inbound byte ratio (data asymmetry): 618 vs typical 1, somewhat higher. Largest deviations from the service baseline: variability of packet sizes: 356 vs typical 0, somewhat higher; outbound-to-inbound byte ratio (data asymmetry): 618 vs typical 1, somewhat higher; average packet size: 617 vs typical 9, somewhat higher. The destination, port 50947, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 94953,
+    "risk_score": 58.1,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5339,
+      "evidence": 0.324,
+      "features": [
+        {
+          "feature": "iat_std_ms",
+          "share": 0.293,
+          "value": 41783.11328125,
+          "typical": 0.0944792628288269,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "idle_mean_s",
+          "share": 0.242,
+          "value": 72.41284942626953,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "iat_mean_ms",
+          "share": 0.22,
+          "value": 24165.873046875,
+          "typical": 8.15000057220459,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 12.62,
+      "evidence": 1.0,
+      "features": [
+        {
+          "feature": "idle_mean_s",
+          "z": 13.49,
+          "value": 72.41284942626953,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "iat_max_s",
+          "z": 12.25,
+          "value": 72.41284942626953,
+          "typical": 0.02387700043618679,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "flow_duration_s",
+          "z": 12.11,
+          "value": 72.49761962890625,
+          "typical": 0.023940999060869217,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 53,
+      "service": "port 53 (DNS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow is moderately unusual compared with the learned benign behavior and shows a large deviation from the port 53 (DNS) baseline. Behaviors driving the unusualness: variability of packet timing (ms): 41,783 vs typical 0.094, much higher; average idle period (seconds): 72 vs typical 0, far higher; average gap between packets (ms): 24,166 vs typical 8.2, somewhat higher. Largest deviations from the service baseline: average idle period (seconds): 72 vs typical 0, far higher; longest pause between packets (seconds): 72 vs typical 0.024, far higher; connection duration (seconds): 72 vs typical 0.024, far higher. The destination is a common service, port 53 (DNS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 95706,
+    "risk_score": 50.4,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.6488,
+      "evidence": 0.966,
+      "features": [
+        {
+          "feature": "idle_mean_s",
+          "share": 0.172,
+          "value": 116.21724700927734,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 3.56,
+      "evidence": 0.081,
+      "features": [
+        {
+          "feature": "fwd_bwd_byte_ratio",
+          "z": 4.05,
+          "value": 38.0,
+          "typical": 0.3409236669540405,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        },
+        {
+          "feature": "fwd_bwd_pkt_ratio",
+          "z": 3.64,
+          "value": 5.0,
+          "typical": 1.2000000476837158,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        },
+        {
+          "feature": "idle_mean_s",
+          "z": 3.01,
+          "value": 116.21724700927734,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 443,
+      "service": "port 443 (HTTPS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior and shows a small deviation from the port 443 (HTTPS) baseline. Behaviors driving the unusualness: average idle period (seconds): 116 vs typical 0, somewhat higher. Largest deviations from the service baseline: outbound-to-inbound byte ratio (data asymmetry): 38 vs typical 0.34, somewhat higher; outbound-to-inbound packet ratio (traffic asymmetry): 5 vs typical 1.2, somewhat higher; average idle period (seconds): 116 vs typical 0, somewhat higher. The destination is a common service, port 443 (HTTPS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 101936,
+    "risk_score": 31.1,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5532,
+      "evidence": 0.541,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 1.43,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 46608,
+      "service": "port 46608",
+      "type": "uncommon port",
+      "factor": 1.15
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is moderately unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. No single behavior stands out; the unusualness comes from a combination of features. The destination, port 46608, is an uncommon port, which slightly raises priority. This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 118594,
+    "risk_score": 68.8,
+    "risk_level": "High",
+    "anomaly": {
+      "score": 0.5766,
+      "evidence": 0.751,
+      "features": [
+        {
+          "feature": "iat_std_ms",
+          "share": 0.282,
+          "value": 57968.96484375,
+          "typical": 0.0944792628288269,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "iat_mean_ms",
+          "share": 0.241,
+          "value": 33502.66796875,
+          "typical": 8.15000057220459,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        },
+        {
+          "feature": "idle_mean_s",
+          "share": 0.187,
+          "value": 100.43946075439453,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 13.57,
+      "evidence": 1.0,
+      "features": [
+        {
+          "feature": "idle_mean_s",
+          "z": 14.51,
+          "value": 100.43946075439453,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "iat_max_s",
+          "z": 13.18,
+          "value": 100.43946075439453,
+          "typical": 0.02387700043618679,
+          "direction": "higher",
+          "magnitude": "far"
+        },
+        {
+          "feature": "flow_duration_s",
+          "z": 13.03,
+          "value": 100.50800323486328,
+          "typical": 0.023940999060869217,
+          "direction": "higher",
+          "magnitude": "far"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 53,
+      "service": "port 53 (DNS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly",
+      "deviation"
+    ],
+    "explanation": "High risk because the network flow is highly unusual compared with the learned benign behavior and shows a large deviation from the port 53 (DNS) baseline. Behaviors driving the unusualness: variability of packet timing (ms): 57,969 vs typical 0.094, much higher; average gap between packets (ms): 33,503 vs typical 8.2, somewhat higher; average idle period (seconds): 100 vs typical 0, far higher. Largest deviations from the service baseline: average idle period (seconds): 100 vs typical 0, far higher; longest pause between packets (seconds): 100 vs typical 0.024, far higher; connection duration (seconds): 101 vs typical 0.024, far higher. The destination is a common service, port 53 (DNS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate immediately",
+      "text": "Investigate immediately and consider containment according to your organization's security policy. This system takes no automated action; any containment decision is made by a person."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 126310,
+    "risk_score": 40.4,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.3767,
+      "evidence": 0.0,
+      "features": []
+    },
+    "baseline_deviation": {
+      "score": 8.65,
+      "evidence": 0.808,
+      "features": [
+        {
+          "feature": "idle_mean_s",
+          "z": 9.27,
+          "value": 18.09944725036621,
+          "typical": 0.0,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "iat_max_s",
+          "z": 8.39,
+          "value": 18.09944725036621,
+          "typical": 0.02387700043618679,
+          "direction": "higher",
+          "magnitude": "much"
+        },
+        {
+          "feature": "flow_duration_s",
+          "z": 8.3,
+          "value": 18.172454833984375,
+          "typical": 0.023940999060869217,
+          "direction": "higher",
+          "magnitude": "much"
+        }
+      ]
+    },
+    "context": {
+      "destination_port": 53,
+      "service": "port 53 (DNS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "deviation"
+    ],
+    "explanation": "Medium risk because the network flow shows a large deviation from the port 53 (DNS) baseline. Only the service baseline contributed, so treat the evidence as weaker. Largest deviations from the service baseline: average idle period (seconds): 18 vs typical 0, much higher; longest pause between packets (seconds): 18 vs typical 0.024, much higher; connection duration (seconds): 18 vs typical 0.024, much higher. The destination is a common service, port 53 (DNS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 127567,
+    "risk_score": 42.1,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.5901,
+      "evidence": 0.841,
+      "features": [
+        {
+          "feature": "total_packets",
+          "share": 0.21,
+          "value": 396.0,
+          "typical": 7.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 2.05,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 80,
+      "service": "port 80 (HTTP)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is highly unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. Behaviors driving the unusualness: total packets in the flow: 396 vs typical 7, somewhat higher. The destination is a common service, port 80 (HTTP). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  },
+  {
+    "flow_index": 136341,
+    "risk_score": 34.5,
+    "risk_level": "Medium",
+    "anomaly": {
+      "score": 0.568,
+      "evidence": 0.691,
+      "features": [
+        {
+          "feature": "total_packets",
+          "share": 0.188,
+          "value": 153.0,
+          "typical": 16.0,
+          "direction": "higher",
+          "magnitude": "somewhat"
+        }
+      ]
+    },
+    "baseline_deviation": {
+      "score": 1.66,
+      "evidence": 0.0,
+      "features": []
+    },
+    "context": {
+      "destination_port": 443,
+      "service": "port 443 (HTTPS)",
+      "type": "common service",
+      "factor": 1.0
+    },
+    "drivers": [
+      "anomaly"
+    ],
+    "explanation": "Medium risk because the network flow is moderately unusual compared with the learned benign behavior. Only the learned-behavior model contributed, so treat the evidence as weaker. Behaviors driving the unusualness: total packets in the flow: 153 vs typical 16, somewhat higher. The destination is a common service, port 443 (HTTPS). This indicates unusual behavior, not proof of malicious activity; it can also come from legitimate but rare activity.",
+    "recommended_response": {
+      "action": "Investigate / review",
+      "text": "Investigate / review: compare this flow and related traffic for this service with expected activity (maintenance, approved scanners, new applications) and decide whether to escalate."
+    },
+    "automated_action": "none",
+    "note": "Advisory only: no blocking, isolation or other automated action has been taken.",
+    "evaluation_only_label": "BENIGN"
+  }
+]
