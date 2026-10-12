@@ -3,6 +3,7 @@ import { api } from "./api.js";
 import { formatDateTime } from "./format.js";
 import { useResource } from "./useResource.js";
 import AlertDetail from "./components/AlertDetail.jsx";
+import ModelMetrics from "./components/ModelMetrics.jsx";
 import Overview from "./components/Overview.jsx";
 import RecentAlerts, { PAGE_SIZE } from "./components/RecentAlerts.jsx";
 import RiskDistribution from "./components/RiskDistribution.jsx";
@@ -14,13 +15,14 @@ export default function App() {
   const [lastUpdated, setLastUpdated] = useState(null);
 
   const summary = useResource(() => api.getSummary(), []);
+  const modelMetrics = useResource(() => api.getModelMetrics(), []);
   const alerts = useResource(
     () => api.getAlerts({ page: filters.page, pageSize: PAGE_SIZE, level: filters.level, ordering: filters.ordering }),
     [filters.page, filters.level, filters.ordering],
   );
   const detail = useResource(() => api.getAlert(selectedId), [selectedId], selectedId !== null);
 
-  const refreshing = summary.loading || alerts.loading;
+  const refreshing = summary.loading || alerts.loading || modelMetrics.loading;
   const offline = isUnavailable(summary.error) || isUnavailable(alerts.error) || isUnavailable(detail.error);
 
   useEffect(() => {
@@ -30,6 +32,7 @@ export default function App() {
   const refresh = () => {
     summary.reload();
     alerts.reload();
+    modelMetrics.reload();
   };
   const status = offline ? "offline" : summary.data ? "online" : "connecting";
 
@@ -62,6 +65,11 @@ export default function App() {
         <section className="card" aria-labelledby="h-overview">
           <h2 id="h-overview">Overview</h2>
           <Overview summary={summary.data} loading={summary.loading} error={summary.error} />
+        </section>
+
+        <section className="card" aria-labelledby="h-metrics">
+          <h2 id="h-metrics">Model evaluation</h2>
+          <ModelMetrics metrics={modelMetrics.data} loading={modelMetrics.loading} error={modelMetrics.error} />
         </section>
 
         <section className="card" aria-labelledby="h-dist">

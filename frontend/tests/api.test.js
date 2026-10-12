@@ -32,6 +32,28 @@ test("getAlerts maps options to the API's query names", async () => {
   assert.equal(url, "/api/alerts/?page=1&page_size=10&ordering=newest");
 });
 
+test("getModelMetrics calls /api/model-metrics/ and returns the saved JSON", async () => {
+  let seen;
+  const body = { accuracy: 0.91, precision: 0.82, recall: 0.77, f1_score: 0.794, roc_auc: 0.88 };
+  const api = mk(async (url, opts) => {
+    seen = { url, opts };
+    return json(body);
+  });
+  assert.deepEqual(await api.getModelMetrics(), body);
+  assert.equal(seen.url, "/api/model-metrics/");
+  assert.equal(seen.opts.method, undefined);
+});
+
+test("a missing metrics file is an ApiError with the server message", async () => {
+  const api = mk(async () => json({ error: "Model metrics have not been calculated." }, 404));
+  await assert.rejects(api.getModelMetrics(), (e) => {
+    assert.ok(e instanceof ApiError);
+    assert.equal(e.status, 404);
+    assert.equal(e.message, "Model metrics have not been calculated.");
+    return true;
+  });
+});
+
 test("getAlert calls the detail URL", async () => {
   let url;
   const api = mk(async (u) => ((url = u), json({ id: 7 })));

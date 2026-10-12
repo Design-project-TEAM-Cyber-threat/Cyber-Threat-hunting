@@ -3,8 +3,10 @@ API tests (run from backend/ with:  python manage.py test).
 They use a small synthetic world (ml/synthetic_world.py) so they run in seconds.
 """
 import copy
+import json
 import re
 import tempfile
+from pathlib import Path
 
 import pandas as pd
 from django.test import override_settings
@@ -216,3 +218,81 @@ class ApiTests(APITestCase):
         self.assertTrue(routes)
         for route in routes:
             self.assertIsNone(re.search(r"block|isolat|quarantin|disable|terminat|contain|kill|ban|lock", route, re.I), route)
+
+
+def _sample_metrics():
+    return {
+        "accuracy": 0.91,
+        "precision": 0.82,
+        "recall": 0.77,
+        "f1_score": 0.794,
+        "roc_auc": 0.88,
+        "threshold": 0.55,
+        "threshold_rule": "Predict attack when the anomaly score is strictly greater than the threshold.",
+        "training_samples": 200000,
+        "evaluation_samples": 40,
+        "benign_evaluation_samples": 20,
+        "attack_evaluation_samples": 20,
+        "dataset_name": "CICIDS2017",
+        "training_method": "Isolation Forest trained on benign flows only. Labels are not model input features.",
+        "evaluation_method": "Held-out benign and attack flows. ROC-AUC uses continuous anomaly scores.",
+        "timestamp_utc": "2026-10-12T00:00:00Z",
+        "limitations": "Offline CICIDS2017 metrics do not prove real-world zero-day detection performance.",
+    }
+
+
+class ModelMetricsApiTests(APITestCase):
+    """Reads a saved JSON file. These tests do not download CICIDS2017 or train a model."""
+
+    def test_returns_saved_metrics_without_training(self):
+        payload = _sample_metrics()
+        with tempfile.TemporaryDirectory() as folder, override_settings(ML_ARTIFACTS_DIR=folder):
+            (Path(folder) / "model_metrics.json").write_text(json.dumps(payload), encoding="utf-8")
+            response = self.client.get(reverse("model-metrics"))
+            self.assertEqual(response.status_code, 200)
+            self.assertAlmostEqual(response.data["accuracy"], 0.91)
+            self.assertAlmostEqual(response.data["precision"], 0.82)
+            self.assertAlmostEqual(response.data["recall"], 0.77)
+            self.assertAlmostEqual(response.data["f1_score"], 0.794)
+            self.assertAlmostEqual(response.data["roc_auc"], 0.88)
+            self.assertEqual(response.data["training_samples"], 200000)
+            self.assertEqual(response.data["dataset_name"], "CICIDS2017")
+            self.assertEqual(response.data["limitations"], payload["limitations"])
+            self.assertEqual(list(Path(folder).glob("*.joblib")), [])
+
+    def test_missing_file(self):
+        with tempfile.TemporaryDirectory() as folder, override_settings(ML_ARTIFACTS_DIR=folder):
+            response = self.client.get(reverse("model-metrics"))
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.data["error"], "Model metrics have not been calculated.")
+
+    def test_invalid_json(self):
+        with tempfile.TemporaryDirectory() as folder, override_settings(ML_ARTIFACTS_DIR=folder):
+            (Path(folder) / "model_metrics.json").write_text("{not json", encoding="utf-8")
+            response = self.client.get(reverse("model-metrics"))
+        self.assertEqual(response.status_code, 500)
+        self.assertIn("valid JSON", response.data["error"])
+
+    def test_json_missing_metric_fields(self):
+        with tempfile.TemporaryDirectory() as folder, override_settings(ML_ARTIFACTS_DIR=folder):
+            (Path(folder) / "model_metrics.json").write_text(json.dumps({"accuracy": 1}), encoding="utf-8")
+            incomplete = self.client.get(reverse("model-metrics"))
+            (Path(folder) / "model_metrics.json").write_text(json.dumps(["accuracy", 1]), encoding="utf-8")
+            not_object = self.client.get(reverse("model-metrics"))
+            bad = _sample_metrics()
+            bad["recall"] = "high"
+            (Path(folder) / "model_metrics.json").write_text(json.dumps(bad), encoding="utf-8")
+            non_numeric = self.client.get(reverse("model-metrics"))
+        self.assertEqual(incomplete.status_code, 500)
+        self.assertEqual(not_object.status_code, 500)
+        self.assertEqual(non_numeric.status_code, 500)
+        self.assertIn("invalid", incomplete.data["error"])
+
+    def test_endpoint_is_read_only(self):
+        for method in ("post", "put", "patch", "delete"):
+            response = getattr(self.client, method)(reverse("model-metrics"), {}, format="json")
+            self.assertEqual(response.status_code, 405, method)
+
+    def test_route_is_registered(self):
+        routes = list(route_strings(get_resolver().url_patterns))
+        self.assertIn("api/model-metrics/", routes)

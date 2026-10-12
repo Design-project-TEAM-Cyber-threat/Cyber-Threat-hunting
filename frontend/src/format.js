@@ -66,3 +66,16 @@ export function totalPages(count, pageSize) {
 export function levelClass(level) {
   return `level-${String(level || "").toLowerCase()}`;
 }
+
+// Offline Isolation Forest metrics returned by GET /api/model-metrics/.
+export const MODEL_METRICS = [
+  { key: "accuracy", label: "Accuracy" },
+  { key: "precision", label: "Precision" },
+  { key: "recall", label: "Recall" },
+  { key: "f1_score", label: "F1-score" },
+  { key: "roc_auc", label: "ROC-AUC" },
+];
+
+export function formatMetric(n) {
+  return formatScore(n, 3);
+}

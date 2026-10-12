@@ -1,3 +1,7 @@
+import json
+from pathlib import Path
+
+from django.conf import settings
 from django.db import transaction
 from django.db.models import Avg, Count
 from rest_framework import generics, status
@@ -155,3 +159,48 @@ class SummaryView(APIView):
             "average_alert_risk": alerts.aggregate(a=Avg("risk_score"))["a"],
             "disclaimer": DISCLAIMER,
         })
+
+
+_METRIC_KEYS = ("accuracy", "precision", "recall", "f1_score", "roc_auc")
+
+
+def _metrics_payload_ok(data):
+    if not isinstance(data, dict):
+        return False
+    for key in _METRIC_KEYS:
+        value = data.get(key)
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            return False
+    return True
+
+
+class ModelMetricsView(APIView):
+    """GET /api/model-metrics/ — saved offline evaluation. Does not train a model."""
+
+    def get(self, request):
+        path = Path(settings.ML_ARTIFACTS_DIR) / "model_metrics.json"
+        if not path.is_file():
+            return error(
+                "Model metrics have not been calculated.",
+                http_status=status.HTTP_404_NOT_FOUND,
+            )
+        try:
+            raw = path.read_text(encoding="utf-8")
+        except OSError:
+            return error(
+                "Saved model metrics could not be read.",
+                http_status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            return error(
+                "Saved model metrics file is not valid JSON.",
+                http_status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+        if not _metrics_payload_ok(data):
+            return error(
+                "Saved model metrics file is invalid.",
+                http_status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+        return Response(data)
