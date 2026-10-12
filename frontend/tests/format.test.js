@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   formatNumber, formatScore, formatValue, formatPercent, formatDateTime, formatDrivers,
   featureLabel, formatDirection, formatAutomatedAction, totalPages, levelClass,
+  MODEL_METRICS, formatMetric,
 } from "../src/format.js";
 import { FEATURE_LABELS } from "../src/featureLabels.js";
 
@@ -45,6 +46,14 @@ test("drivers and feature labels", () => {
 test("automated action shows the API value, 'None' for the current system", () => {
   assert.equal(formatAutomatedAction("none"), "None");
   assert.equal(formatAutomatedAction(undefined), "—");
+});
+
+test("model metrics format the five API values and do not invent them", () => {
+  assert.deepEqual(MODEL_METRICS.map((m) => m.key), ["accuracy", "precision", "recall", "f1_score", "roc_auc"]);
+  assert.deepEqual(MODEL_METRICS.map((m) => m.label), ["Accuracy", "Precision", "Recall", "F1-score", "ROC-AUC"]);
+  assert.equal(formatMetric(0.91234), "0.912");
+  assert.equal(formatMetric(null), "—");
+  assert.equal(formatMetric(undefined), "—");
 });
 
 test("paging and level classes", () => {

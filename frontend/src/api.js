@@ -80,6 +80,7 @@ export function createApi({ baseUrl = "/api", fetchImpl, timeoutMs = 15000 } = {
     getAlerts: ({ page, pageSize, level, ordering } = {}) =>
       get("/alerts/", { page, page_size: pageSize, level, ordering }),
     getAlert: (id) => get(`/alerts/${encodeURIComponent(id)}/`),
+    getModelMetrics: () => get("/model-metrics/"),
   };
 }
 

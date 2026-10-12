@@ -9,4 +9,5 @@ urlpatterns = [
     path("alerts/", views.AlertListView.as_view(), name="alert-list"),
     path("alerts/<int:pk>/", views.AlertDetailView.as_view(), name="alert-detail"),
     path("summary/", views.SummaryView.as_view(), name="summary"),
+    path("model-metrics/", views.ModelMetricsView.as_view(), name="model-metrics"),
 ]
